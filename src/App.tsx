@@ -4,7 +4,7 @@ import Ticker from './components/home/Ticker';
 import ActivitySection from './components/home/ActivitySection';
 import QuickService from './components/home/QuickService';
 import NewsSection from './components/home/NewsSection';
-import MinisterSection from './components/home/MinisterSection';
+
 import MissionSection from './components/home/MissionSection';
 import MediaHub from './components/home/MediaHub';
 import Footer from './components/layout/Footer';
@@ -38,10 +38,7 @@ function App() {
           <NewsSection />
         </section>
         
-        {/* Page 4: Minister */}
-        <section id="minister" className="snap-section">
-          <MinisterSection />
-        </section>
+
         
         {/* Page 5: Global Mission */}
         <section id="mission" className="snap-section overflow-y-auto">

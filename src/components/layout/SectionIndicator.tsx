@@ -10,7 +10,7 @@ const sections: Section[] = [
   { id: 'home', label: 'Home' },
   { id: 'activity', label: 'Activities' },
   { id: 'news', label: 'News' },
-  { id: 'minister', label: 'Minister' },
+
   { id: 'mission', label: 'Missions' },
   { id: 'media', label: 'Media' },
   { id: 'footer', label: 'Footer' },
