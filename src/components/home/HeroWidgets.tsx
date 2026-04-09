@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Plus, MessageCircle, ChevronRight, ChevronLeft, Bell } from 'lucide-react';
+import { Plus, MessageCircle, ChevronRight, Bell } from 'lucide-react';
 import { NEWS_DATA } from '../../data/mockData';
 
 const HeroWidgets: React.FC = () => {
