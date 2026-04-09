@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --header-h: 72px;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* App.tsx의 컨테이너에서 스크롤 관리 */
+  }
+  
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 0px; /* 원페이지 스크롤에서는 불필요한 스크롤바 제거 */
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-8 py-4 bg-gold text-white font-bold transition-all hover:bg-[#D4B87A] hover:-translate-y-0.5 active:translate-y-0;
+  }
+  
+  .btn-outline {
+    @apply inline-flex items-center gap-2 px-8 py-4 border border-white/60 text-white font-medium transition-all hover:bg-white/10 hover:-translate-y-0.5 active:translate-y-0;
+  }
+
+  /* One Page Scroll snapping */
+  .snap-container {
+    height: 100vh;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+  }
+
+  .snap-section {
+    height: 100vh;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    position: relative;
+    overflow: hidden;
+  }
+}
+
+.fade-up {
+  @apply opacity-0 translate-y-12 transition-all duration-700 ease-out;
+}
+
+.fade-up.visible {
+  @apply opacity-100 translate-y-0;
+}
