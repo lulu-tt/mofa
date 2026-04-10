@@ -28,16 +28,14 @@ const Header: React.FC<HeaderProps> = ({ activeSection = 0 }) => {
       <div className="max-w-[1440px] mx-auto h-full px-6 md:px-10 flex items-center justify-between">
         {/* Logo */}
         <a href="/" className="flex items-center gap-3 shrink-0">
-          <div className={cn(
-            "w-10 h-10 rounded-full border-2 overflow-hidden bg-white transition-colors",
-            isLightSection ? "border-primary/20" : "border-white/40"
-          )}>
-            <img src="https://static.mofa.go.kr/www/images/common/logo_mofa.png" alt="외교부" className="w-full h-full object-contain" />
-          </div>
-          <div className="flex flex-col leading-tight">
-            <span className="text-lg font-bold tracking-widest">외교부</span>
-            <span className="text-[10px] font-medium tracking-[0.2em] uppercase opacity-70">MOFA Korea</span>
-          </div>
+          <img 
+            src="https://www.mofa.go.kr/images/common/logo.png" 
+            alt="외교부" 
+            className={cn(
+              "h-10 md:h-12 object-contain transition-all duration-500",
+              !isLightSection && "brightness-0 invert"
+            )} 
+          />
         </a>
 
         {/* GNB (Desktop) */}
