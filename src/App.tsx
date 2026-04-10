@@ -29,13 +29,14 @@ function App() {
         <section id="activity" className="snap-section bg-surface overflow-y-auto">
           <div className="flex flex-col min-h-full">
             <ActivitySection />
-            <QuickService />
+
           </div>
         </section>
         
         {/* Page 3: News */}
         <section id="news" className="snap-section bg-white overflow-y-auto">
           <NewsSection />
+          <QuickService />
         </section>
         
 
