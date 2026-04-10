@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 
 interface Section {
@@ -16,32 +16,19 @@ const sections: Section[] = [
   { id: 'footer', label: 'Footer' },
 ];
 
-const SectionIndicator: React.FC = () => {
-  const [activeSection, setActiveSection] = useState('home');
+interface SectionIndicatorProps {
+  activeSection?: number;
+}
 
-  useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setActiveSection(entry.target.id);
-        }
-      });
-    }, { threshold: 0.5 });
-
-    sections.forEach((s) => {
-      const el = document.getElementById(s.id);
-      if (el) observer.observe(el);
-    });
-
-    return () => observer.disconnect();
-  }, []);
-
+const SectionIndicator: React.FC<SectionIndicatorProps> = ({ activeSection = 0 }) => {
   const scrollToSection = (id: string) => {
     const el = document.getElementById(id);
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' });
     }
   };
+
+  const currentSectionId = sections[activeSection]?.id || 'home';
 
   return (
     <div className="fixed right-8 top-1/2 -translate-y-1/2 z-[100] hidden lg:flex flex-col gap-6 items-center">
@@ -52,17 +39,17 @@ const SectionIndicator: React.FC = () => {
           className="group relative flex items-center justify-center w-4 h-4"
         >
           {/* Label Tooltip */}
-          <span className={`absolute right-8 text-[10px] font-en font-bold tracking-widest uppercase py-1 px-3 bg-primary text-white pointer-events-none transition-all duration-300 opacity-0 group-hover:opacity-100 ${activeSection === s.id ? 'opacity-100 border-r-2 border-gold' : ''}`}>
+          <span className={`absolute right-8 text-[10px] font-en font-bold tracking-widest uppercase py-1 px-3 bg-primary text-white pointer-events-none transition-all duration-300 opacity-0 group-hover:opacity-100 ${currentSectionId === s.id ? 'opacity-100 border-r-2 border-gold' : ''}`}>
             {s.label}
           </span>
           
           {/* Dot */}
           <div className={`w-1.5 h-1.5 rounded-full transition-all duration-500 ${
-            activeSection === s.id ? 'bg-gold scale-150 shadow-[0_0_10px_rgba(200,169,110,0.8)]' : 'bg-white/20 group-hover:bg-white/40'
+            currentSectionId === s.id ? 'bg-gold scale-150 shadow-[0_0_10px_rgba(200,169,110,0.8)]' : 'bg-white/20 group-hover:bg-white/40'
           }`} />
           
           {/* Outer Ring */}
-          {activeSection === s.id && (
+          {currentSectionId === s.id && (
             <motion.div
               layoutId="navRing"
               className="absolute inset-0 border border-gold rounded-full"

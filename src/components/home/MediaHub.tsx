@@ -4,7 +4,7 @@ import { Globe, MessageCircle, Tv, PlayCircle } from 'lucide-react';
 
 const MediaHub: React.FC = () => {
   return (
-    <section className="py-24 px-6 md:px-12 max-w-[1440px] mx-auto overflow-hidden">
+    <section className="h-full flex flex-col justify-center px-6 md:px-12 max-w-[1440px] mx-auto overflow-hidden">
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
         <div className="relative pl-6">
           <div className="absolute left-0 top-1 bottom-1 w-1 bg-gold rounded-full" />

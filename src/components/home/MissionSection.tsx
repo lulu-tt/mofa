@@ -41,7 +41,7 @@ const MissionSection: React.FC = () => {
               </h2>
             </div>
 
-            <div className="relative w-full h-[450px] md:h-[550px] mt-4">
+            <div className="relative w-full h-[600px] md:h-[800px] mt-4">
               <DottedGlobe />
               {/* Stats overlay */}
               <div className="absolute bottom-16 left-0">

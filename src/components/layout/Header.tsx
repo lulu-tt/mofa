@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Search, Menu, X } from 'lucide-react';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
@@ -7,15 +7,14 @@ function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-const Header: React.FC = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
+interface HeaderProps {
+  activeSection?: number;
+}
+
+const Header: React.FC<HeaderProps> = ({ activeSection = 0 }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 50);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  const isLightSection = activeSection === 1 || activeSection === 2 || activeSection === 4;
 
   const navItems = [
     '주요외교활동', '영사·국가지역', '외교정책', '뉴스·공지', '국민참여', '정보공개', '외교부 소개'
@@ -23,15 +22,15 @@ const Header: React.FC = () => {
 
   return (
     <header className={cn(
-      "fixed top-0 left-0 w-full h-[var(--header-h)] z-[1000] transition-all duration-300",
-      isScrolled ? "bg-white/90 backdrop-blur-md shadow-lg text-primary" : "bg-transparent text-white"
+      "fixed top-0 left-0 w-full h-[var(--header-h)] z-[1000] transition-all duration-500",
+      isLightSection ? "bg-white/95 backdrop-blur-md shadow-sm text-primary" : "bg-transparent text-white"
     )}>
       <div className="max-w-[1440px] mx-auto h-full px-6 md:px-10 flex items-center justify-between">
         {/* Logo */}
         <a href="/" className="flex items-center gap-3 shrink-0">
           <div className={cn(
             "w-10 h-10 rounded-full border-2 overflow-hidden bg-white transition-colors",
-            isScrolled ? "border-primary/20" : "border-white/40"
+            isLightSection ? "border-primary/20" : "border-white/40"
           )}>
             <img src="https://static.mofa.go.kr/www/images/common/logo_mofa.png" alt="외교부" className="w-full h-full object-contain" />
           </div>
@@ -63,7 +62,7 @@ const Header: React.FC = () => {
           
           <button className={cn(
             "hidden md:flex items-center gap-2 px-3 py-1.5 border rounded font-en text-xs font-bold tracking-wider transition-all",
-            isScrolled ? "border-primary/30" : "border-white/30 hover:bg-white/10"
+            isLightSection ? "border-primary/30" : "border-white/30 hover:bg-white/10"
           )}>
             <span className="text-gold">KO</span>
             <span className="opacity-30">|</span>

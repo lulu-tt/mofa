@@ -1,3 +1,4 @@
+import { useState, useEffect, useRef } from 'react';
 import Header from './components/layout/Header';
 import Hero from './components/home/Hero';
 import Ticker from './components/home/Ticker';
@@ -11,12 +12,30 @@ import Footer from './components/layout/Footer';
 import SectionIndicator from './components/layout/SectionIndicator';
 
 function App() {
+  const [activeSection, setActiveSection] = useState(0);
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const main = scrollRef.current;
+    if (!main) return;
+
+    const handleScroll = () => {
+      const index = Math.round(main.scrollTop / main.clientHeight);
+      if (index !== activeSection) {
+        setActiveSection(index);
+      }
+    };
+
+    main.addEventListener('scroll', handleScroll, { passive: true });
+    return () => main.removeEventListener('scroll', handleScroll);
+  }, [activeSection]);
+
   return (
     <div className="h-screen w-full overflow-hidden bg-primary">
-      <Header />
-      <SectionIndicator />
+      <Header activeSection={activeSection} />
+      <SectionIndicator activeSection={activeSection} />
       
-      <main className="snap-container h-full w-full">
+      <main ref={scrollRef} className="snap-container h-full w-full">
         {/* Page 1: Home (Hero + Ticker) */}
         <section id="home" className="snap-section flex flex-col">
           <div className="flex-1 min-h-0">
