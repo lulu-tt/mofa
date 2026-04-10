@@ -52,10 +52,12 @@ function App() {
           </div>
         </section>
         
-        {/* Page 3: News */}
-        <section id="news" className="snap-section bg-white overflow-y-auto">
-          <NewsSection />
-          <QuickService />
+        {/* Page 3: News & Services (Combined Centering) */}
+        <section id="news" className="snap-section bg-white overflow-hidden">
+          <div className="h-full flex flex-col justify-center">
+            <NewsSection />
+            <QuickService />
+          </div>
         </section>
         
 

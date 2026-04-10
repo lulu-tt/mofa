@@ -12,8 +12,8 @@ const NewsSection: React.FC = () => {
   ];
 
   return (
-    <section className="h-full flex flex-col justify-center pt-24 pb-12 px-6 md:px-12 max-w-[1440px] mx-auto overflow-hidden">
-      <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
+    <section className="pt-10 pb-4 px-6 md:px-12 max-w-[1440px] mx-auto overflow-hidden">
+      <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-6">
         <div className="relative pl-6">
           <div className="absolute left-0 top-1 bottom-1 w-1 bg-gold rounded-full" />
           <h2 className="text-4xl md:text-5xl font-black text-primary leading-tight">외교부 소식</h2>
@@ -26,7 +26,7 @@ const NewsSection: React.FC = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
         {/* Featured News */}
-        <div className="lg:col-span-7 group relative h-[380px] overflow-hidden rounded-sm cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-500">
+        <div className="lg:col-span-7 group relative h-[320px] overflow-hidden rounded-sm cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-500">
           <img 
             src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=1000" 
             className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
@@ -44,7 +44,7 @@ const NewsSection: React.FC = () => {
 
         {/* Tabbed News List */}
         <div className="lg:col-span-5 flex flex-col">
-          <div className="flex border-b border-slate-200 mb-8">
+          <div className="flex border-b border-slate-200 mb-4">
             {tabs.map((tab) => (
               <button
                 key={tab.id}

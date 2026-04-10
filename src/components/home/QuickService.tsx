@@ -38,14 +38,14 @@ const iconConfig: Record<string, { icon: React.ReactNode; color: string; bg: str
 
 const QuickService: React.FC = () => {
   return (
-    <section className="bg-slate-50/50 pb-12 pt-4 px-6 md:px-12 border-t border-slate-100 mt-auto">
-      <div className="max-w-[1440px] shadow-2xl shadow-primary/5 mx-auto bg-white rounded-2xl p-8 md:p-12 relative overflow-hidden group/container">
+    <section className="bg-slate-50/50 pb-8 pt-2 px-6 md:px-12 border-t border-slate-100 mt-auto">
+      <div className="max-w-[1440px] shadow-2xl shadow-primary/5 mx-auto bg-white rounded-2xl p-6 md:p-8 relative overflow-hidden group/container">
         {/* Abstract background elements */}
         <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full -mr-32 -mt-32 blur-3xl transition-transform duration-1000 group-hover/container:scale-110" />
         <div className="absolute bottom-0 left-0 w-64 h-64 bg-gold/5 rounded-full -ml-32 -mb-32 blur-3xl transition-transform duration-1000 group-hover/container:scale-110" />
 
         <div className="relative z-10">
-          <div className="flex flex-col md:flex-row md:items-center justify-between mb-12 gap-6">
+          <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-6">
             <div>
               <h3 className="text-2xl font-black text-primary tracking-tight mb-2 flex items-center gap-3">
                 자주 찾는 서비스
@@ -58,7 +58,7 @@ const QuickService: React.FC = () => {
             </a>
           </div>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
             {SERVICES.map((svc, index) => {
               const cfg = iconConfig[svc.icon];
               return (

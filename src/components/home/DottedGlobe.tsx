@@ -15,8 +15,8 @@ const DottedGlobe: React.FC = () => {
     let height = canvas.height;
 
     // Globe parameters
-    const dotsCount = 2000;
-    const radius = Math.min(width, height) * 0.55;
+    const dotsCount = 4000;
+    const radius = Math.min(width, height) * 0.9;
     const dots: { x: number; y: number; z: number }[] = [];
 
     // Initialize dots on a sphere
