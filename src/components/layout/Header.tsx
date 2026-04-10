@@ -28,18 +28,17 @@ const Header: React.FC<HeaderProps> = ({ activeSection = 0 }) => {
       <div className="max-w-[1440px] mx-auto h-full px-6 md:px-10 flex items-center justify-between">
         {/* Logo */}
         <a href="/" className="flex items-center gap-2 md:gap-3 shrink-0 group">
-          <div className="w-9 h-9 md:w-11 md:h-11 flex items-center justify-center bg-white rounded-full overflow-hidden shadow-sm transition-transform duration-500 group-hover:scale-105">
-            <img 
-              src="https://static.mofa.go.kr/www/images/common/logo_mofa.png" 
-              alt="외교부 심볼" 
-              className="w-full h-full object-contain p-1"
-            />
+          <div className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center bg-white rounded-full transition-transform duration-500 group-hover:scale-105 shadow-sm">
+            <svg viewBox="0 0 100 100" className="w-full h-full p-1 md:p-1.5 overflow-visible">
+              <path d="M50 2A48 48 0 0 1 50 98A24 24 0 0 1 50 50A24 24 0 0 0 50 2Z" fill="#C60C30" />
+              <path d="M50 2A48 48 0 0 0 50 98A24 24 0 0 0 50 50A24 24 0 0 1 50 2Z" fill="#003478" />
+            </svg>
           </div>
           <div className={cn(
             "flex flex-col leading-tight transition-colors duration-500",
             !isLightSection ? "text-white" : "text-primary"
           )}>
-            <span className="text-base md:text-xl font-black tracking-tight">외교부</span>
+            <span className="text-lg md:text-xl font-black tracking-tight">외교부</span>
             <span className="text-[8px] md:text-[10px] font-bold tracking-widest uppercase opacity-60">MOFA Korea</span>
           </div>
         </a>
