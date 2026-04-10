@@ -29,7 +29,7 @@ const Header: React.FC<HeaderProps> = ({ activeSection = 0 }) => {
         {/* Logo */}
         <a href="/" className="flex items-center gap-3 shrink-0">
           <img 
-            src="https://www.mofa.go.kr/images/common/logo.png" 
+            src="https://upload.wikimedia.org/wikipedia/commons/d/d6/Ministry_of_Foreign_Affairs_of_the_Republic_of_Korea_Logo_%28horizontal%29.svg" 
             alt="외교부" 
             className={cn(
               "h-10 md:h-12 object-contain transition-all duration-500",
