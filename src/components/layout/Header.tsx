@@ -27,15 +27,21 @@ const Header: React.FC<HeaderProps> = ({ activeSection = 0 }) => {
     )}>
       <div className="max-w-[1440px] mx-auto h-full px-6 md:px-10 flex items-center justify-between">
         {/* Logo */}
-        <a href="/" className="flex items-center gap-3 shrink-0">
-          <img 
-            src="https://upload.wikimedia.org/wikipedia/commons/d/d6/Ministry_of_Foreign_Affairs_of_the_Republic_of_Korea_Logo_%28horizontal%29.svg" 
-            alt="외교부" 
-            className={cn(
-              "h-10 md:h-12 object-contain transition-all duration-500",
-              !isLightSection && "brightness-0 invert"
-            )} 
-          />
+        <a href="/" className="flex items-center gap-2 md:gap-3 shrink-0 group">
+          <div className="w-9 h-9 md:w-11 md:h-11 flex items-center justify-center bg-white rounded-full overflow-hidden shadow-sm transition-transform duration-500 group-hover:scale-105">
+            <img 
+              src="https://static.mofa.go.kr/www/images/common/logo_mofa.png" 
+              alt="외교부 심볼" 
+              className="w-full h-full object-contain p-1"
+            />
+          </div>
+          <div className={cn(
+            "flex flex-col leading-tight transition-colors duration-500",
+            !isLightSection ? "text-white" : "text-primary"
+          )}>
+            <span className="text-base md:text-xl font-black tracking-tight">외교부</span>
+            <span className="text-[8px] md:text-[10px] font-bold tracking-widest uppercase opacity-60">MOFA Korea</span>
+          </div>
         </a>
 
         {/* GNB (Desktop) */}
