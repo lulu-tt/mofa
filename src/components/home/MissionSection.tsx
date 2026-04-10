@@ -30,7 +30,7 @@ const MissionSection: React.FC = () => {
         {/* Main Content Area */}
         <div className="flex flex-col lg:flex-row gap-8 flex-1 min-h-0">
           {/* Left: 3D Dotted Globe & Callout (Shifted DOWN per request) */}
-          <div className="lg:w-[45%] flex flex-col pt-24">
+          <div className="lg:w-[45%] flex flex-col pt-32">
             <div className="mb-6">
               <span className="inline-flex items-center gap-2 text-gold font-bold text-sm tracking-widest uppercase mb-4">
                 <span className="w-2 h-2 bg-gold rounded-full animate-pulse" /> Diplomatic missions Worldwide
@@ -41,7 +41,7 @@ const MissionSection: React.FC = () => {
               </h2>
             </div>
 
-            <div className="relative w-full h-[600px] md:h-[800px] mt-4">
+            <div className="relative w-full h-[600px] md:h-[800px] mt-[-3.5rem]">
               <DottedGlobe />
               {/* Stats overlay */}
               <div className="absolute bottom-16 left-0">
