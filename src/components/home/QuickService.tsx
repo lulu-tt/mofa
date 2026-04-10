@@ -38,7 +38,7 @@ const iconConfig: Record<string, { icon: React.ReactNode; color: string; bg: str
 
 const QuickService: React.FC = () => {
   return (
-    <section className="bg-slate-50/50 py-16 px-6 md:px-12 border-t border-slate-100 mt-auto">
+    <section className="bg-slate-50/50 pb-12 pt-4 px-6 md:px-12 border-t border-slate-100 mt-auto">
       <div className="max-w-[1440px] shadow-2xl shadow-primary/5 mx-auto bg-white rounded-2xl p-8 md:p-12 relative overflow-hidden group/container">
         {/* Abstract background elements */}
         <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full -mr-32 -mt-32 blur-3xl transition-transform duration-1000 group-hover/container:scale-110" />

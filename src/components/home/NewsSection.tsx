@@ -12,8 +12,8 @@ const NewsSection: React.FC = () => {
   ];
 
   return (
-    <section className="py-24 px-6 md:px-12 max-w-[1440px] mx-auto overflow-hidden">
-      <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+    <section className="pt-16 pb-8 px-6 md:px-12 max-w-[1440px] mx-auto overflow-hidden">
+      <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
         <div className="relative pl-6">
           <div className="absolute left-0 top-1 bottom-1 w-1 bg-gold rounded-full" />
           <h2 className="text-4xl md:text-5xl font-black text-primary leading-tight">외교부 소식</h2>
@@ -26,7 +26,7 @@ const NewsSection: React.FC = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
         {/* Featured News */}
-        <div className="lg:col-span-7 group relative h-[500px] overflow-hidden rounded-sm cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-500">
+        <div className="lg:col-span-7 group relative h-[380px] overflow-hidden rounded-sm cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-500">
           <img 
             src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=1000" 
             className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
@@ -76,7 +76,7 @@ const NewsSection: React.FC = () => {
                 {NEWS_DATA[activeTab].map((item, i) => (
                   <li 
                     key={i}
-                    className="group flex items-center gap-6 py-5 px-4 border-b border-slate-100 hover:bg-slate-50 transition-colors cursor-pointer"
+                    className="group flex items-center gap-6 py-3 px-4 border-b border-slate-100 hover:bg-slate-50 transition-colors cursor-pointer"
                   >
                     <span className="bg-slate-100 text-primary font-en font-bold text-[11px] px-3 py-1 rounded tracking-tighter group-hover:bg-primary group-hover:text-white transition-colors uppercase">
                       {item.date}

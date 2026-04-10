@@ -18,7 +18,7 @@ const SectionHeader: React.FC<{ title: string; subTitle: string }> = ({ title, s
 
 const ActivitySection: React.FC = () => {
   return (
-    <div className="pt-32 pb-6 px-6 md:px-12 max-w-[1500px] mx-auto space-y-16">
+    <div className="min-h-full flex flex-col justify-center py-20 px-6 md:px-12 max-w-[1500px] mx-auto space-y-20">
       {/* 1. 주요 외교활동 Block */}
       <section>
         <SectionHeader title="주요 외교활동" subTitle="Key Diplomatic Activities" />
