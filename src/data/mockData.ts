@@ -67,6 +67,24 @@ export const ACTIVITIES = [
   },
 ];
 
+export const MINISTER_ACTIVITIES = [
+  {
+    title: '한-이란 외교장관 통화(4.9)',
+    date: '2026.04.09',
+    img: 'https://images.unsplash.com/photo-1577563908411-5077b6dc7624?w=400'
+  },
+  {
+    title: '중동 분쟁 관련 전문가 간담회 개최',
+    date: '2026.04.09',
+    img: 'https://images.unsplash.com/photo-1544650030-3c698e0d4960?w=400'
+  },
+  {
+    title: '한일 외교장관 통화(4.2)',
+    date: '2026.04.02',
+    img: 'https://images.unsplash.com/photo-1521791136064-7986c2959663?w=400'
+  },
+];
+
 export const SERVICES = [
   {
     name: '여권발급',
