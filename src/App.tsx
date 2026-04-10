@@ -54,7 +54,7 @@ function App() {
         
         {/* Page 3: News & Services (Combined Centering) */}
         <section id="news" className="snap-section bg-white overflow-hidden">
-          <div className="h-full flex flex-col justify-center">
+          <div className="h-full flex flex-col justify-center gap-2">
             <NewsSection />
             <QuickService />
           </div>
