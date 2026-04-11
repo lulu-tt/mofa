@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Search, Menu, X } from 'lucide-react';
+import { Search, Menu, X, ChevronDown } from 'lucide-react';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
