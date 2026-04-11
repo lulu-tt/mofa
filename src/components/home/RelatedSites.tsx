@@ -1,5 +1,5 @@
 import React from 'react';
-import { ChevronRight, Pause, Play, Plus } from 'lucide-react';
+import { Pause, Plus } from 'lucide-react';
 
 const relatedBanners = [
   { id: 1, img: "https://www.mofa.go.kr/upload/notice/20260403020116832.jpg", title: "2026 국가데이터" },

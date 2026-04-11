@@ -1,35 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ChevronRight } from 'lucide-react';
-import { ACTIVITIES, MINISTER_ACTIVITIES } from '../../data/mockData';
+import { ACTIVITIES } from '../../data/mockData';
 
-const SectionHeader: React.FC<{ title: string; subTitle: string }> = ({ title, subTitle }) => (
-  <div className="flex items-end justify-between mb-6 group/header">
-    <div className="relative pl-5">
-      <div className="absolute left-0 top-1.5 bottom-1.5 w-1 bg-gold rounded-full transition-transform duration-500 group-hover/header:scale-y-125" />
-      <h2 className="text-2xl font-black text-primary tracking-tighter uppercase">{title}</h2>
-      <p className="text-[9px] font-en font-bold tracking-[0.2em] text-gold/60 uppercase mt-0.5">{subTitle}</p>
-    </div>
-    <a href="#" className="flex items-center gap-1.5 text-[10px] font-black text-primary/40 hover:text-gold transition-colors tracking-widest uppercase">
-      View More <ChevronRight size={14} className="mt-[-1px]" />
-    </a>
-  </div>
-);
 
-const CustomHeader: React.FC<{ title: string; enTitle: string }> = ({ title, enTitle }) => (
-  <div className="mb-8 lg:mb-12">
-    <div className="inline-flex items-center gap-2 mb-4 text-gold font-black tracking-[0.3em] text-[10px] uppercase">
-      <div className="w-2 h-2 rounded-full bg-gold animate-pulse" />
-      {enTitle}
-    </div>
-    <h2 className="text-4xl lg:text-5xl font-black text-primary leading-[1.1] tracking-tighter break-keep">
-      {title.split(' ').map((word, i) => (
-        <span key={i} className="block">{word}</span>
-      ))}
-    </h2>
-    <div className="w-16 h-1 bg-gold mt-8" />
-  </div>
-);
 
 const ActivitySection: React.FC = () => {
   return (
