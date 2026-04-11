@@ -39,7 +39,7 @@ const SectionIndicator: React.FC<SectionIndicatorProps> = ({ activeSection = 0 }
           className="group relative flex items-center justify-center w-4 h-4"
         >
           {/* Label Tooltip */}
-          <span className={`absolute right-8 text-[10px] font-en font-bold tracking-widest uppercase py-1 px-3 bg-primary text-white pointer-events-none transition-all duration-300 opacity-0 group-hover:opacity-100 ${currentSectionId === s.id ? 'opacity-100 border-r-2 border-gold' : ''}`}>
+          <span className="absolute right-8 text-[10px] font-en font-bold tracking-widest uppercase py-1 px-3 bg-primary text-white pointer-events-none transition-all duration-300 opacity-0 group-hover:opacity-100">
             {s.label}
           </span>
           
