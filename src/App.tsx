@@ -74,7 +74,7 @@ function App() {
         </section>
 
         {/* Page 7: Footer & Related Sites */}
-        <section id="footer" className="snap-section bg-white overflow-y-auto">
+        <section id="footer" className="snap-section bg-white overflow-y-auto pt-[var(--header-h)]">
           <RelatedSites />
           <Footer />
         </section>
