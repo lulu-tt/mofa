@@ -33,122 +33,76 @@ const CustomHeader: React.FC<{ title: string; enTitle: string }> = ({ title, enT
 
 const ActivitySection: React.FC = () => {
   return (
-    <div className="min-h-full flex flex-col pt-48 pb-20 px-6 md:px-12 max-w-[1440px] mx-auto space-y-32">
-      {/* 1. 주요 외교활동 Block (35:65 Asymmetric) */}
-      <section className="flex flex-col lg:flex-row gap-10 lg:gap-20">
-        <div className="lg:w-[32%] shrink-0">
-          <CustomHeader title="주요 외교활동" enTitle="News & Activities" />
-          <p className="text-slate-400 text-sm leading-relaxed max-w-xs hidden lg:block font-medium">
-            대한민국의 위상을 높이고 국익을 증진시키기 위한 <br/>범정부 차원의 주요 외교 현장을 전달합니다.
-          </p>
-          <a href="#" className="inline-flex items-center gap-2 mt-8 text-xs font-black text-primary hover:text-gold transition-all group tracking-widest uppercase">
-            View All Activities
-            <ChevronRight size={16} className="group-hover:translate-x-1 transition-transform" />
-          </a>
-        </div>
+    <div className="min-h-full flex items-center pt-32 pb-20 px-6 md:px-12 max-w-[1550px] mx-auto relative group/section">
+      
+      {/* 35:65 Asymmetric Layout */}
+      <div className="w-full flex flex-col lg:flex-row gap-12 lg:gap-24 items-start">
         
-        <div className="lg:w-[68%] grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-14">
-          {ACTIVITIES.slice(0, 4).map((activity, index) => (
-            <motion.article
-              key={activity.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="group cursor-pointer"
-            >
-              <div className="relative aspect-[16/10] overflow-hidden rounded-sm mb-5">
-                <img 
-                  src={activity.img} 
-                  alt={activity.title} 
-                  className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" 
-                />
-                <div className="absolute inset-0 bg-primary/10 group-hover:opacity-0 transition-opacity" />
-              </div>
-              <div className="space-y-3">
-                <span className="text-gold font-black text-[10px] tracking-widest uppercase">{activity.category}</span>
-                <h3 className="font-bold text-slate-900 text-lg md:text-xl leading-tight group-hover:text-primary transition-colors line-clamp-2 break-keep">
-                  {activity.title}
-                </h3>
-                <time className="block text-[11px] font-en text-slate-400 tracking-widest uppercase">{activity.date}</time>
-              </div>
-            </motion.article>
-          ))}
-        </div>
-      </section>
-
-      {/* 2. 장관 활동 Block (35:65 Asymmetric with Banner on left) */}
-      <section className="flex flex-col lg:flex-row gap-10 lg:gap-20">
-        <div className="lg:w-[32%] shrink-0 flex flex-col">
-          <CustomHeader title="장관 외교활동" enTitle="Minister News" />
-          
-          {/* Minister Banner moved to left base */}
-          <motion.div 
-            className="w-full mt-auto relative bg-gradient-to-br from-primary to-[#1a237e] rounded-sm overflow-hidden flex flex-col shadow-2xl"
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-          >
-            <div className="p-8 pb-0">
-              <h3 className="text-white text-xl font-bold leading-tight mb-3">
-                안녕하십니까<br />
-                <span className="text-gold">외교부장관 조 현</span> 입니다.
-              </h3>
-              <p className="text-white/60 text-[11px] leading-relaxed mb-8">
-                "국민과 소통하며 신뢰받는 <br/>실용 외교를 펼치겠습니다."
-              </p>
-              
-              <div className="grid grid-cols-1 gap-2 mb-8">
-                {['장관소개', '주요일정'].map((btn) => (
-                  <button 
-                    key={btn}
-                    className="w-full bg-white/5 hover:bg-white/15 text-white text-[10px] font-bold py-3 px-4 rounded-sm border border-white/10 transition-all text-left flex justify-between items-center group"
-                  >
-                    {btn}
-                    <ChevronRight size={14} className="opacity-0 group-hover:opacity-100 transition-all" />
-                  </button>
-                ))}
-              </div>
+        {/* Left Section: Context & Title (35%) */}
+        <div className="lg:w-[35%] shrink-0 pt-4">
+          <div className="mb-12">
+            <div className="inline-flex items-center gap-2 mb-5 text-gold font-black tracking-[0.3em] text-[11px] uppercase opacity-80">
+              <div className="w-2 h-2 rounded-full bg-gold animate-pulse" />
+              News & Activities
             </div>
-            
-            <div className="h-64 relative flex items-end justify-end px-4 overflow-hidden">
-               <img 
-                src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&q=80" 
-                alt="Minister" 
-                className="h-[120%] object-contain select-none translate-y-8 drop-shadow-2xl grayscale hover:grayscale-0 transition-all duration-700" 
-              />
-            </div>
-          </motion.div>
+            <h2 className="text-[46px] lg:text-[54px] font-black text-primary leading-[1.05] tracking-tighter mb-8 break-keep">
+              주요<br />외교활동
+            </h2>
+            <div className="w-16 h-1.5 bg-gold/40 mb-12" />
+            <p className="text-slate-500 text-[15px] leading-relaxed max-w-[280px] font-medium break-keep mb-10">
+              대한민국의 위상을 높이고 국익을 증진시키기 위한 <br />범정부 차원의 주요 외교 현장을 전달합니다.
+            </p>
+            <a href="#" className="inline-flex items-center gap-2 text-xs font-black text-primary/80 hover:text-gold transition-all group tracking-[0.2em] uppercase">
+              View All Activities
+              <ChevronRight size={16} className="group-hover:translate-x-1 transition-transform" />
+            </a>
+          </div>
         </div>
 
-        <div className="lg:w-[68%] grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-14">
-          {MINISTER_ACTIVITIES.slice(0, 4).map((activity, index) => (
-            <motion.article
-              key={activity.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="group cursor-pointer"
-            >
-              <div className="relative aspect-[16/10] overflow-hidden rounded-sm mb-5 grayscale-[0.3] group-hover:grayscale-0 transition-all duration-700">
-                <img 
-                  src={activity.img} 
-                  alt={activity.title} 
-                  className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" 
-                />
-              </div>
-              <div className="space-y-3">
-                <span className="text-gold font-black text-[10px] tracking-widest uppercase">Press Release</span>
-                <h3 className="font-bold text-slate-900 text-lg md:text-xl leading-tight group-hover:text-primary transition-colors line-clamp-2 break-keep">
-                  {activity.title}
-                </h3>
-                <time className="block text-[11px] font-en text-slate-400 tracking-widest uppercase">{activity.date}</time>
-              </div>
-            </motion.article>
-          ))}
+        {/* Right Section: News Grid (65%) */}
+        <div className="lg:w-[65%] relative flex gap-10">
+          <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-16">
+            {ACTIVITIES.slice(0, 4).map((activity, index) => (
+              <motion.article
+                key={activity.title}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7, delay: index * 0.1 }}
+                className="group cursor-pointer"
+              >
+                <div className="relative aspect-[16/10] overflow-hidden rounded-[2px] mb-6 shadow-sm group-hover:shadow-2xl transition-all duration-500">
+                  <img 
+                    src={activity.img} 
+                    alt={activity.title} 
+                    className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" 
+                  />
+                  <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+                </div>
+                <div className="space-y-4">
+                  <span className="text-gold font-black text-[11px] tracking-widest uppercase block">{activity.category}</span>
+                  <h3 className="font-bold text-primary text-[20px] lg:text-[22px] leading-tight group-hover:text-gold transition-colors line-clamp-2 break-keep tracking-tight">
+                    {activity.title}
+                  </h3>
+                  <time className="block text-[12px] font-en text-slate-400 font-medium tracking-widest uppercase">{activity.date}</time>
+                </div>
+              </motion.article>
+            ))}
+          </div>
+
+          {/* Right Floating Badge & Indicator (from Image) */}
+          <div className="hidden xl:flex flex-col items-center gap-6 pt-24 shrink-0">
+             <div className="bg-primary px-3 py-1 flex items-center justify-center rotate-0">
+               <span className="text-white text-[9px] font-black tracking-widest uppercase">Activities</span>
+             </div>
+             <div className="flex flex-col gap-2">
+               <div className="w-2.5 h-2.5 rounded-full border-2 border-gold bg-gold" />
+               <div className="w-2.5 h-2.5 rounded-full border-2 border-gold/30 hover:bg-gold/50 cursor-pointer transition-all" />
+             </div>
+          </div>
         </div>
-      </section>
+
+      </div>
     </div>
   );
 };
