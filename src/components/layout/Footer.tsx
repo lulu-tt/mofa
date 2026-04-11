@@ -3,7 +3,7 @@ import { Globe, MessageCircle, Tv, Phone, MapPin } from 'lucide-react';
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-dark text-white/50 h-full flex flex-col justify-between">
+    <footer className="bg-dark text-white/50 flex flex-col">
       <div className="max-w-[1440px] mx-auto py-20 px-6 md:px-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-16 lg:gap-8">
         {/* Info Column */}
         <div className="lg:col-span-5 pr-0 lg:pr-12">

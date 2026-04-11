@@ -8,6 +8,7 @@ import NewsSection from './components/home/NewsSection';
 
 import MissionSection from './components/home/MissionSection';
 import MediaHub from './components/home/MediaHub';
+import RelatedSites from './components/home/RelatedSites';
 import Footer from './components/layout/Footer';
 import SectionIndicator from './components/layout/SectionIndicator';
 
@@ -72,8 +73,9 @@ function App() {
           <MediaHub />
         </section>
 
-        {/* Page 7: Footer */}
-        <section id="footer" className="snap-section">
+        {/* Page 7: Footer & Related Sites */}
+        <section id="footer" className="snap-section bg-white overflow-y-auto">
+          <RelatedSites />
           <Footer />
         </section>
       </main>
