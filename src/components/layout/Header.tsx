@@ -50,34 +50,37 @@ const Header: React.FC<HeaderProps> = ({ activeSection = 0 }) => {
         </a>
 
         {/* GNB (Desktop) */}
-        <nav className="hidden xl:flex items-center gap-1">
+        <nav className="hidden xl:flex items-center gap-2">
           {navItems.map((item) => (
             <a 
               key={item} 
               href="#" 
-              className="px-4 py-2 text-[14.5px] font-semibold hover:text-gold transition-colors relative group"
+              className="px-3 py-2 text-[15px] font-bold hover:text-gold transition-all flex items-center gap-1 group whitespace-nowrap"
             >
               {item}
-              <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-gold scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
+              <ChevronDown size={14} className="opacity-40 group-hover:opacity-100 transition-opacity" />
             </a>
           ))}
         </nav>
 
         {/* Controls */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-4 lg:gap-6">
+          <div className="hidden md:flex items-center gap-4">
+            <button className="flex items-center gap-1 text-sm font-bold hover:opacity-70 transition-opacity group">
+              화면 설정
+              <ChevronDown size={14} className="opacity-40 group-hover:opacity-100" />
+            </button>
+            <span className="w-px h-3 bg-current opacity-20" />
+            <button className="flex items-center gap-1 text-sm font-bold hover:opacity-70 transition-opacity group">
+              Language
+              <ChevronDown size={14} className="opacity-40 group-hover:opacity-100" />
+            </button>
+          </div>
+
           <button className="p-2 hover:bg-black/5 rounded-full transition-colors" aria-label="검색">
             <Search size={20} />
           </button>
           
-          <button className={cn(
-            "hidden md:flex items-center gap-2 px-3 py-1.5 border rounded font-en text-xs font-bold tracking-wider transition-all",
-            isLightSection ? "border-primary/30" : "border-white/30 hover:bg-white/10"
-          )}>
-            <span className="text-gold">KO</span>
-            <span className="opacity-30">|</span>
-            <span>EN</span>
-          </button>
-
           <button 
             className="xl:hidden p-2 hover:bg-black/5 rounded-full" 
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
