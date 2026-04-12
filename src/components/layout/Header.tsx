@@ -14,7 +14,7 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ activeSection = 0 }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const isLightSection = activeSection === 1 || activeSection === 2 || activeSection === 4;
+  const isLightSection = activeSection === 1 || activeSection === 2 || activeSection === 4 || activeSection === 5;
 
   const navItems = [
     '주요외교활동', '영사·국가지역', '외교정책', '뉴스·공지', '국민참여', '정보공개', '외교부 소개'

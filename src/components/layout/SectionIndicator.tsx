@@ -45,7 +45,9 @@ const SectionIndicator: React.FC<SectionIndicatorProps> = ({ activeSection = 0 }
           
           {/* Dot */}
           <div className={`w-1.5 h-1.5 rounded-full transition-all duration-500 ${
-            currentSectionId === s.id ? 'bg-gold scale-150 shadow-[0_0_10px_rgba(200,169,110,0.8)]' : 'bg-white/20 group-hover:bg-white/40'
+            currentSectionId === s.id 
+              ? 'bg-gold scale-150 shadow-[0_0_10px_rgba(200,169,110,0.8)]' 
+              : (currentSectionId === 'media' ? 'bg-primary/30 group-hover:bg-primary/50' : 'bg-white/20 group-hover:bg-white/40')
           }`} />
           
           {/* Outer Ring */}

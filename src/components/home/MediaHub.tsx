@@ -1,186 +1,208 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Instagram, Facebook, Twitter, Youtube, Play, PlayCircle, Users, Heart, MessageCircle } from 'lucide-react';
+import { Globe, Play, PlayCircle, Heart, MessageCircle, ExternalLink, Video, Quote } from 'lucide-react';
 
 const MediaHub: React.FC = () => {
+  const handleImgError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+    e.currentTarget.src = 'https://picsum.photos/seed/korea-fallback/800/600';
+  };
+
   return (
-    <section className="h-screen w-full bg-gradient-to-b from-[#060E1A] to-[#0A1628] overflow-hidden flex flex-col justify-center relative">
-      <div className="px-6 md:px-12 max-w-[1550px] mx-auto w-full pt-[calc(var(--header-h)+64px)] pb-12">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
-          <div className="relative pl-6">
-            <div className="absolute left-0 top-1 bottom-1 w-1 bg-gold rounded-full" />
-            <h2 className="text-4xl md:text-5xl font-black text-white leading-tight">외교부 소통채널</h2>
-            <p className="text-sm font-en font-bold tracking-[0.3em] text-gold uppercase mt-2">Social Media Hub</p>
+    <section className="h-screen w-full bg-[#F8F9FA] overflow-hidden flex flex-col relative font-sans">
+      <div className="flex-1 flex flex-col px-12 md:px-24 max-w-[1700px] mx-auto w-full pt-[calc(var(--header-h)+80px)] pb-10 space-y-6 md:space-y-8">
+        
+        {/* Header - Compact */}
+        <div className="flex-shrink-0">
+          <div className="flex items-center gap-3 mb-1">
+            <div className="w-1 h-8 bg-gold rounded-full" />
+            <h2 className="text-3xl md:text-4xl font-black text-[#0D2B55] tracking-tighter uppercase">외교부 소통채널</h2>
           </div>
+          <p className="text-[11px] font-en font-bold tracking-[0.4em] text-gold uppercase ml-4 opacity-80 leading-none">Social Media Hub</p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
-          {/* YouTube Spotlight (Left Large) */}
+        {/* Global Grid System: Fixed Height for Central Area */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch h-[55%] min-h-0">
+          
+          {/* LEFT: KOREAZ Spotlight */}
           <motion.div 
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, scale: 0.98 }}
+            whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="group relative bg-primary/40 rounded-[2rem] p-10 md:p-12 flex flex-col justify-between transition-all duration-200 ease-out hover:-translate-y-2 hover:ring-2 hover:ring-white/20 min-h-[520px] shadow-2xl overflow-hidden border border-white/5"
+            className="group bg-[#0D2B55] rounded-[2rem] p-8 flex flex-col shadow-[0_20px_40px_rgba(13,43,85,0.15)] border border-white/5 relative overflow-hidden h-full"
           >
-            <div className="relative z-10">
-              <span className="text-gold text-[10px] font-black uppercase tracking-[0.4em] mb-4 inline-block opacity-90">Official YouTube</span>
-              <h3 className="text-5xl font-black text-white tracking-tighter mb-2">KOREAZ</h3>
-              <p className="text-white/40 text-sm font-medium mb-6">구독자 284,000명 · 영상 1,247개</p>
-              <p className="text-gold font-en font-medium text-base tracking-widest italic mb-6">All about Korea A to Z</p>
-              <div className="w-12 h-1 bg-gold/40 mb-8" />
-              <p className="text-white/70 text-[15px] leading-relaxed break-keep max-w-sm">
-                대한민국 외교부 공식 리얼 미디어 채널. <br/>한국의 외교, 문화, 비전을 세계에 알립니다.
+            <div className="relative z-10 flex flex-col items-center text-center mb-4">
+              <span className="text-gold text-[9px] font-black uppercase tracking-[0.4em] mb-1 opacity-90 font-en">Official YouTube</span>
+              <h3 className="text-3xl font-black text-white tracking-tighter leading-none mb-1">KOREAZ</h3>
+              <p className="text-white/40 text-[10px] font-bold mb-2">구독자 284,000명 · 영상 1,247개</p>
+              <p className="text-gold font-en font-medium text-[11px] tracking-widest italic mb-4">All about Korea A to Z</p>
+              <p className="text-white/60 text-[12px] leading-relaxed break-keep max-w-sm font-medium line-clamp-1">
+                대한민국의 외교, 문화, 비전을 세계에 알리는 공식 채널
               </p>
             </div>
 
-            <div className="relative z-10 mt-10">
-              <div className="relative group/vid overflow-hidden rounded-2xl shadow-2xl aspect-video border border-white/10">
-                <img 
-                  src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800" 
-                  className="w-full h-full object-cover transition-transform duration-1000 group-hover/vid:scale-105"
-                  alt="YouTube Video"
+            <div className="flex-1 min-h-0 bg-[#0A1D39] rounded-2xl shadow-2xl relative overflow-hidden group/vid mb-4 border border-white/10 aspect-video mx-auto w-full">
+               <img 
+                  src="https://images.unsplash.com/photo-1540914120281-17c6a9cce04b?w=1000&q=90" 
+                  onError={handleImgError}
+                  className="w-full h-full object-cover transition-transform duration-[2s] group-hover/vid:scale-110 opacity-80"
+                  alt="Korea Cultural Content"
                 />
-                <div className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover/vid:bg-black/20 transition-all">
-                  <PlayCircle className="text-white fill-white/20 group-hover/vid:scale-110 transition-transform duration-500" size={72} />
-                </div>
-              </div>
-              
-              <button className="w-full mt-8 py-4 bg-[#FF0000] text-white font-black text-sm tracking-widest hover:brightness-110 transition-all rounded-xl flex items-center justify-center gap-3 shadow-xl active:scale-[0.98]">
-                <Youtube size={20} />
-                구독하기
-              </button>
+               <div className="absolute inset-0 bg-black/10 group-hover/vid:bg-transparent transition-all" />
+               <div className="absolute inset-0 flex items-center justify-center">
+                  <PlayCircle className="text-white opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700" size={56} />
+               </div>
             </div>
-            
-            {/* Aesthetic background glow */}
-            <div className="absolute top-0 right-0 w-64 h-64 bg-gold/5 blur-[120px] rounded-full pointer-events-none" />
+
+            <button className="flex-shrink-0 mx-auto px-8 py-2.5 bg-[#FF0000] text-white font-black text-[12px] tracking-[0.2em] hover:brightness-110 transition-all rounded-full flex items-center justify-center gap-3 shadow-xl active:scale-[0.98]">
+               <Play size={10} className="fill-white" />
+               채널 구독하기
+            </button>
           </motion.div>
 
-          {/* SNS Grid (Right) */}
-          <div className="grid grid-cols-2 gap-4 h-full">
-            {/* Instagram */}
-            <SNSCard 
-              sns={{
-                id: 'insta', name: 'Instagram', 
-                color: 'bg-gradient-to-tr from-[#f9ce34] via-[#ee2a7b] to-[#6228d7]', 
-                icon: <Instagram size={20} />,
-                stats: '팔로워 52,400명'
-              }}
+          {/* RIGHT: SNS Grid (2x2) */}
+          <div className="grid grid-cols-2 gap-6 h-full min-h-0">
+            <FixedSNSCard 
+              sns={{ name: 'INSTAGRAM', color: 'bg-gradient-to-tr from-[#f9ce34] via-[#ee2a7b] to-[#6228d7]', stats: '팔로워 52,400명' }}
               delay={0.1}
             >
-              <div className="grid grid-cols-3 gap-1.5 mt-4">
-                {[1, 2, 3].map(i => (
-                  <div key={i} className="aspect-square rounded-sm overflow-hidden bg-white/10 border border-white/5">
-                    <img src={`https://picsum.photos/seed/insta${i}/150/150`} className="w-full h-full object-cover opacity-80" alt="" />
+              <div className="grid grid-cols-3 gap-2 h-full items-center px-1">
+                {[1, 2, 3].map((n) => (
+                  <div key={n} className="aspect-square rounded-lg overflow-hidden border border-white/20 shadow-md">
+                    <img src={`https://picsum.photos/seed/mofainsta${n}/300/300`} className="w-full h-full object-cover" alt="" />
                   </div>
                 ))}
               </div>
-            </SNSCard>
+            </FixedSNSCard>
 
-            {/* Facebook */}
-            <SNSCard 
-              sns={{
-                id: 'fb', name: 'Facebook', 
-                color: 'bg-[#1877F2]/90', 
-                icon: <Facebook size={20} />,
-                stats: '좋아요 128,000개'
-              }}
+            <FixedSNSCard 
+              sns={{ name: 'FACEBOOK', color: 'bg-[#1877F2]', stats: '좋아요 128,000개' }}
               delay={0.2}
             >
-              <div className="mt-4 bg-white/10 p-4 rounded-xl border border-white/10">
-                <p className="text-[11px] font-bold text-white/90 line-clamp-2 leading-relaxed">
-                  "한-아세안 연대구상(KASI)의 성과와 미래 비전을 시민 여러분과 소통합니다."
+              <div className="bg-white/10 rounded-xl p-4 h-full flex flex-col justify-center border border-white/10">
+                <Quote className="text-white/30 mb-1" size={16} />
+                <p className="text-[12px] font-bold text-white leading-snug line-clamp-2 italic">
+                  대한민국 외교부는 자유, 평화, 번영에 기여하는 글로벌 중추국가로서 나아갑니다.
                 </p>
-                <div className="flex items-center gap-2 mt-2 opacity-50">
-                  <Heart size={10} /> <span className="text-[10px]">1.2k</span>
-                  <MessageCircle size={10} /> <span className="text-[10px]">42</span>
+                <div className="flex items-center gap-3 mt-2 text-white/60">
+                  <div className="flex items-center gap-1"><Heart size={10} fill="currentColor" /> <span className="text-[10px] font-black">1.2k</span></div>
+                  <div className="flex items-center gap-1"><MessageCircle size={10} fill="currentColor" /> <span className="text-[10px] font-black">42</span></div>
                 </div>
               </div>
-            </SNSCard>
+            </FixedSNSCard>
 
-            {/* X (Twitter) */}
-            <SNSCard 
-              sns={{
-                id: 'x', name: 'X', 
-                color: 'bg-black/80', 
-                icon: <div className="font-black text-lg">X</div>,
-                stats: '@mofa_kr · 방금'
-              }}
+            <FixedSNSCard 
+              sns={{ name: 'X', color: 'bg-black', stats: '@mofa_kr · 방금', border: 'border border-white/10' }}
               delay={0.3}
             >
-              <div className="mt-4 border-l-2 border-white/20 pl-3">
-                <p className="text-[11px] text-white/80 leading-relaxed italic">
-                  외교부 제2차관, 마약 범죄 근절을 위한 국제 공조 강화 방안 논의...
-                </p>
-                <div className="mt-2 flex gap-3 opacity-40">
-                  <div className="w-4 h-4 bg-white/20 rounded-full" />
-                  <div className="w-4 h-4 bg-white/20 rounded-full" />
+              <div className="bg-white/5 rounded-xl p-4 h-full flex flex-col justify-center border border-white/5">
+                <div className="flex items-center gap-2 mb-2">
+                  <div className="w-4 h-4 rounded-full bg-white/20 flex items-center justify-center text-[7px] font-black">M</div>
+                  <span className="text-[10px] font-bold text-white/50">외교부 @mofa_kr</span>
                 </div>
+                <p className="text-[11px] text-white/80 leading-relaxed font-medium px-2 border-l-2 border-gold/40 line-clamp-2">
+                  글로벌 보건 협력과 기후 변화 대응을 위해 국제 사회와 견고한 연대를 구축하고 있습니다.
+                </p>
               </div>
-            </SNSCard>
+            </FixedSNSCard>
 
-            {/* YouTube Small */}
-            <SNSCard 
-              sns={{
-                id: 'yt-small', name: 'YouTube', 
-                color: 'bg-[#FF0000]/90', 
-                icon: <Youtube size={20} />,
-                stats: '조회수 23만회'
-              }}
+            <FixedSNSCard 
+              sns={{ name: 'YOUTUBE', color: 'bg-[#FF0000]', stats: '▶ 조회수 23만회' }}
               delay={0.4}
             >
-              <div className="mt-4 relative rounded-xl overflow-hidden aspect-[16/9] border border-white/10">
-                <img src="https://images.unsplash.com/photo-1541873676947-95a3b9177e02?w=400" className="w-full h-full object-cover opacity-60" alt="" />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <Play size={16} className="fill-white" />
-                </div>
-                <div className="absolute bottom-0 inset-x-0 p-2 bg-black/40">
-                  <p className="text-[9px] font-bold line-clamp-1">글로벌 중추국가로의 도약 현장</p>
+              <div className="relative rounded-2xl overflow-hidden h-full border border-white/20 shadow-lg group-hover:scale-[1.03] transition-transform duration-700">
+                <img src="https://images.unsplash.com/photo-1524522173746-f628baad3644?w=500" className="w-full h-full object-cover opacity-90" alt="" />
+                <div className="absolute inset-0 bg-black/10 flex items-center justify-center">
+                  <PlayCircle size={32} className="text-white fill-white/20" />
                 </div>
               </div>
-            </SNSCard>
+            </FixedSNSCard>
           </div>
+        </div>
+
+        {/* Bottom Banner Section: Symmetrical 2-Column Grid */}
+        <div className="flex-1 grid grid-cols-2 gap-8 min-h-0 pt-2 pb-2">
+           {/* Dokdo Banner (Left) */}
+           <motion.div 
+             initial={{ opacity: 0, x: -20 }}
+             whileInView={{ opacity: 1, x: 0 }}
+             className="w-full flex items-center justify-between bg-white rounded-2xl px-8 py-3 shadow-[0_5px_15px_rgba(0,0,0,0.02)] border border-slate-100 hover:shadow-lg transition-all group max-h-[85px]"
+           >
+             <div className="flex items-center gap-5 flex-1">
+               <div className="w-10 h-10 bg-gradient-to-br from-[#0D2B55] to-blue-800 rounded-lg flex items-center justify-center text-xl shadow-md group-hover:scale-110 transition-transform">🏝️</div>
+               <div>
+                  <h4 className="text-lg font-black text-primary leading-tight">독도</h4>
+                  <p className="text-slate-400 text-[10px] font-bold">대한민국의 아름다운 영토</p>
+               </div>
+             </div>
+             <div className="flex flex-col items-end gap-1 shrink-0">
+                <button className="flex items-center gap-2 text-[10px] font-black text-slate-400 hover:text-primary transition-colors">
+                  <ExternalLink size={12} /> 누리집 바로가기
+                </button>
+                <button className="flex items-center gap-2 text-[10px] font-black text-slate-400 hover:text-primary transition-colors">
+                  <Video size={12} /> 동영상 보기
+                </button>
+             </div>
+           </motion.div>
+
+           {/* East Sea Banner (Right) */}
+           <motion.div 
+             initial={{ opacity: 0, x: 20 }}
+             whileInView={{ opacity: 1, x: 0 }}
+             transition={{ delay: 0.1 }}
+             className="w-full flex items-center justify-between bg-white rounded-2xl px-8 py-3 shadow-[0_5px_15px_rgba(0,0,0,0.02)] border border-slate-100 hover:shadow-lg transition-all group max-h-[85px]"
+           >
+             <div className="flex items-center gap-5 flex-1">
+               <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-primary rounded-lg flex items-center justify-center text-xl shadow-md group-hover:scale-110 transition-transform">🌊</div>
+               <div>
+                  <h4 className="text-lg font-black text-primary leading-tight">동해</h4>
+                  <p className="text-slate-400 text-[10px] font-bold">과거, 현재, 미래의 이름</p>
+               </div>
+             </div>
+             <div className="flex flex-col items-end gap-1 shrink-0">
+                <button className="text-[10px] font-black text-slate-400 hover:text-primary transition-colors">자세히 보기</button>
+                <button className="flex items-center gap-2 text-[10px] font-black text-slate-400 hover:text-primary transition-colors">
+                  <Video size={12} /> 동영상 보기
+                </button>
+             </div>
+           </motion.div>
         </div>
       </div>
     </section>
   );
 };
 
-interface SNSCardProps {
+interface FixedSNSCardProps {
   sns: {
-    id: string;
     name: string;
     color: string;
-    icon: React.ReactNode;
     stats: string;
+    border?: string;
   };
   delay: number;
   children?: React.ReactNode;
 }
 
-const SNSCard: React.FC<SNSCardProps> = ({ sns, delay, children }) => (
+const FixedSNSCard: React.FC<FixedSNSCardProps> = ({ sns, delay, children }) => (
   <motion.div
-    initial={{ opacity: 0, scale: 0.95 }}
-    whileInView={{ opacity: 1, scale: 1 }}
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true }}
-    transition={{ delay, duration: 0.4 }}
-    className={`p-8 ${sns.color} text-white flex flex-col justify-between transition-all duration-200 ease-out hover:-translate-y-2 hover:ring-2 hover:ring-white/20 cursor-pointer shadow-xl rounded-[2rem] h-[232px] border border-white/5`}
+    transition={{ delay, duration: 0.5 }}
+    className={`${sns.color} rounded-[1.5rem] p-5 text-white flex flex-col shadow-lg hover:-translate-y-1 transition-all duration-300 group overflow-hidden ${sns.border || ''}`}
   >
-    <div className="flex flex-col">
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <div className="w-9 h-9 flex items-center justify-center text-white bg-white/20 rounded-xl backdrop-blur-sm border border-white/10">
-            {sns.icon}
-          </div>
-          <span className="font-black text-sm tracking-tight uppercase">{sns.name}</span>
-        </div>
-        <Users size={14} className="opacity-30" />
+    <div className="flex-shrink-0 flex items-center gap-2 opacity-90 mb-3">
+      <div className="w-6 h-6 flex items-center justify-center bg-white/20 rounded-lg">
+         {sns.name === 'X' ? <span className="font-black text-[9px]">X</span> : <Globe size={14} />}
       </div>
-      {children}
+      <span className="font-black text-[11px] tracking-tight">{sns.name}</span>
     </div>
-    <div className="mt-auto">
-      <p className="text-[10px] font-black tracking-widest text-white/50 uppercase">
-        {sns.stats}
-      </p>
+
+    <div className="flex-1 min-h-0 mb-3">
+       {children}
+    </div>
+
+    <div className="flex-shrink-0 pt-2 flex items-center justify-between opacity-70 border-t border-white/10 font-black text-[9px] tracking-widest uppercase">
+       {sns.stats}
     </div>
   </motion.div>
 );
