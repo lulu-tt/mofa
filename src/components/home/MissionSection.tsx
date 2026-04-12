@@ -1,12 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, ChevronDown } from 'lucide-react';
 import { MISSIONS_DATA } from '../../data/mockData';
+import type { Mission } from '../../types';
 import DottedGlobe from './DottedGlobe';
 
 const MissionSection: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedRegion, setSelectedRegion] = useState('all');
+  const [selectedMissionId, setSelectedMissionId] = useState<string | null>(null);
+  
+  // Refs for scrolling into view
+  const cardRefs = useRef<Record<string, HTMLDivElement | null>>({});
 
   const filteredMissions = MISSIONS_DATA.filter(mission => {
     const matchesSearch = mission.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
@@ -15,23 +20,26 @@ const MissionSection: React.FC = () => {
     return matchesSearch && matchesRegion;
   });
 
+  const handlePinClick = (missionId: string) => {
+    setSelectedMissionId(missionId);
+    const targetCard = cardRefs.current[missionId];
+    if (targetCard) {
+      targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  };
+
   // Staggered layout helper: Split missions into two columns
   const leftCol = filteredMissions.filter((_, i) => i % 2 === 0);
   const rightCol = filteredMissions.filter((_, i) => i % 2 !== 0);
 
   return (
     <section className="bg-gradient-to-br from-[#061A40] via-[#0A2660] to-[#0D3B94] pt-8 pb-12 px-6 md:px-12 overflow-hidden text-white h-full flex flex-col relative">
-      {/* Background Text Pattern (Subtle) */}
-      <div className="absolute top-4 left-10 text-[18vw] font-black text-white/[0.02] pointer-events-none select-none uppercase tracking-tighter">
-        Worldwide
-      </div>
-
       <div className="max-w-[1440px] mx-auto w-full flex-1 flex flex-col relative z-10">
-        {/* Main Content Area */}
         <div className="flex flex-col lg:flex-row gap-8 flex-1 min-h-0">
-          {/* Left: 3D Dotted Globe & Callout (Shifted DOWN per request) */}
-          <div className="lg:w-[45%] flex flex-col pt-32">
-            <div className="mb-6">
+          
+          {/* Left: Interactive 3D Globe */}
+          <div className="lg:w-[45%] flex flex-col pt-32 relative">
+            <div className="mb-6 relative z-20">
               <span className="inline-flex items-center gap-2 text-gold font-bold text-sm tracking-widest uppercase mb-4">
                 <span className="w-2 h-2 bg-gold rounded-full animate-pulse" /> Diplomatic missions Worldwide
               </span>
@@ -42,7 +50,12 @@ const MissionSection: React.FC = () => {
             </div>
 
             <div className="relative w-full h-[600px] md:h-[800px] mt-[-3.5rem]">
-              <DottedGlobe />
+              <DottedGlobe 
+                missions={MISSIONS_DATA} 
+                onPinClick={handlePinClick} 
+                selectedId={selectedMissionId}
+              />
+              
               {/* Stats overlay */}
               <div className="absolute bottom-16 left-0">
                 <div className="flex items-baseline gap-2">
@@ -54,14 +67,17 @@ const MissionSection: React.FC = () => {
             </div>
           </div>
 
-          {/* Right: Search & Staggered Mission Cards */}
+          {/* Right: Scrollable Mission List */}
           <div className="lg:w-[55%] flex flex-col pt-32 h-full overflow-hidden">
             {/* Search & Filter Bar */}
             <div className="flex flex-col sm:flex-row gap-2 mb-8 w-full z-20">
               <div className="relative w-full sm:w-48">
                 <select 
                   value={selectedRegion}
-                  onChange={(e) => setSelectedRegion(e.target.value)}
+                  onChange={(e) => {
+                    setSelectedRegion(e.target.value);
+                    setSelectedMissionId(null);
+                  }}
                   className="w-full h-12 px-5 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl appearance-none text-xs font-bold text-white focus:outline-none focus:border-gold/50 transition-all shadow-xl"
                 >
                   <option value="all" className="bg-[#0A2660]">전체 대륙</option>
@@ -77,7 +93,10 @@ const MissionSection: React.FC = () => {
                   type="text" 
                   placeholder="공관 또는 국가명을 검색하세요"
                   value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
+                  onChange={(e) => {
+                    setSearchTerm(e.target.value);
+                    setSelectedMissionId(null);
+                  }}
                   className="w-full h-12 pl-6 pr-14 bg-white/10 backdrop-blur-xl border border-white/10 rounded-2xl text-sm placeholder:text-white/30 focus:outline-none focus:border-gold/50 transition-all shadow-2xl"
                 />
                 <div className="absolute right-2 top-1/2 -translate-y-1/2 p-2 bg-gold/10 rounded-xl">
@@ -86,24 +105,55 @@ const MissionSection: React.FC = () => {
               </div>
             </div>
 
-            {/* Staggered Mission Card List (Independent Scroll Area) */}
+            {/* Staggered Mission Card List */}
             <div className="flex-1 overflow-y-auto pr-4 custom-scrollbar pb-20">
-              <div className="flex gap-4 items-start">
-                <AnimatePresence mode="popLayout">
-                  {/* Left Column */}
-                  <div className="flex-1 flex flex-col gap-6">
-                    {leftCol.map((mission, idx) => (
-                      <MissionCard key={mission.id} mission={mission} idx={idx} />
-                    ))}
-                  </div>
-                  {/* Right Column (Staggered/Shifted Down) */}
-                  <div className="flex-1 flex flex-col gap-6 pt-16">
-                    {rightCol.map((mission, idx) => (
-                      <MissionCard key={mission.id} mission={mission} idx={idx} />
-                    ))}
-                  </div>
-                </AnimatePresence>
-              </div>
+              <AnimatePresence mode="popLayout">
+                {filteredMissions.length > 0 ? (
+                  <motion.div 
+                    key={`${searchTerm}-${selectedRegion}`}
+                    initial="hidden"
+                    animate="visible"
+                    variants={{
+                      visible: { transition: { staggerChildren: 0.1 } }
+                    }}
+                    className="flex gap-4 items-start"
+                  >
+                    {/* Left Column */}
+                    <div className="flex-1 flex flex-col gap-6">
+                      {leftCol.map((mission) => (
+                        <div key={mission.id} ref={el => { cardRefs.current[mission.id] = el; }}>
+                          <MissionCard 
+                            mission={mission} 
+                            isSelected={selectedMissionId === mission.id}
+                            onClick={() => setSelectedMissionId(mission.id)}
+                          />
+                        </div>
+                      ))}
+                    </div>
+                    {/* Right Column */}
+                    <div className="flex-1 flex flex-col gap-6 pt-16">
+                      {rightCol.map((mission) => (
+                        <div key={mission.id} ref={el => { cardRefs.current[mission.id] = el; }}>
+                          <MissionCard 
+                            mission={mission} 
+                            isSelected={selectedMissionId === mission.id}
+                            onClick={() => setSelectedMissionId(mission.id)}
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  </motion.div>
+                ) : (
+                  <motion.div 
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    className="flex flex-col items-center justify-center h-64 text-white/20 border-2 border-dashed border-white/5 rounded-[2rem]"
+                  >
+                    <Search size={40} className="mb-4 opacity-10" />
+                    <p className="text-sm font-bold tracking-widest uppercase">No mission found</p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
           </div>
         </div>
@@ -112,15 +162,21 @@ const MissionSection: React.FC = () => {
   );
 };
 
-// Extracted MissionCard Component for clarity and reuse
-const MissionCard = ({ mission, idx }: { mission: any; idx: number }) => (
+interface MissionCardProps {
+  mission: Mission;
+  isSelected: boolean;
+  onClick: () => void;
+}
+
+const MissionCard: React.FC<MissionCardProps> = ({ mission, isSelected, onClick }) => (
   <motion.div
     layout
-    initial={{ opacity: 0, y: 30 }}
-    animate={{ opacity: 1, y: 0 }}
-    exit={{ opacity: 0, scale: 0.95 }}
-    transition={{ duration: 0.5, delay: idx * 0.1 }}
-    className="bg-white/[0.03] backdrop-blur-md border border-white/10 p-6 rounded-[2rem] relative group hover:bg-white/10 hover:border-white/20 hover:shadow-2xl transition-all cursor-pointer overflow-hidden"
+    variants={{
+      hidden: { opacity: 0, y: 30 },
+      visible: { opacity: 1, y: 0 }
+    }}
+    onClick={onClick}
+    className={`bg-white/[0.03] backdrop-blur-md p-6 rounded-[2rem] relative group hover:bg-white/10 transition-all cursor-pointer border-2 ${isSelected ? 'border-gold shadow-[0_0_30px_rgba(200,169,110,0.3)] bg-white/10 shadow-gold/10' : 'border-white/10'}`}
   >
     {/* Header: Flag & Name */}
     <div className="flex items-start gap-4 mb-6">
@@ -128,7 +184,7 @@ const MissionCard = ({ mission, idx }: { mission: any; idx: number }) => (
         {mission.flag}
       </div>
       <div className="flex-1">
-        <h4 className="text-lg font-black text-white group-hover:text-gold transition-colors leading-tight">
+        <h4 className={`text-lg font-black leading-tight transition-colors ${isSelected ? 'text-gold' : 'text-white group-hover:text-gold'}`}>
           {mission.name}
         </h4>
         <p className="text-[10px] font-bold text-white/30 uppercase tracking-widest mt-1">
@@ -145,11 +201,11 @@ const MissionCard = ({ mission, idx }: { mission: any; idx: number }) => (
       </div>
       <div className="bg-gold/5 p-3 rounded-2xl border border-gold/10">
         <span className="text-[9px] uppercase font-bold text-gold/40 block mb-1">현지</span>
-        <p className="text-xs font-bold text-gold">{mission.time.split(' ')[1]} {mission.time.split(' ')[2]}</p>
+        <p className="text-xs font-bold text-gold">{mission.time.split(' ')[2] ? mission.time.split(' ')[2] : mission.time}</p>
       </div>
     </div>
 
-    {/* Contact Details (Rich Content) */}
+    {/* Contact Details */}
     <div className="space-y-3 mb-6 text-[11px]">
       <div className="flex items-center gap-3">
         <span className="w-16 text-white/30 font-bold shrink-0">대표전화</span>
@@ -161,20 +217,16 @@ const MissionCard = ({ mission, idx }: { mission: any; idx: number }) => (
       </div>
       <div className="flex items-center gap-3">
         <span className="w-16 text-white/30 font-bold shrink-0">전자메일</span>
-        <span className="text-blue-400/80 underline underline-offset-4">{mission.email}</span>
+        <span className="text-blue-400/80 underline underline-offset-4 overflow-hidden text-ellipsis whitespace-nowrap">{mission.email}</span>
       </div>
       <div className="flex items-start gap-3">
         <span className="w-16 text-white/30 font-bold shrink-0">근무시간</span>
-        <span className="text-white/60 leading-relaxed">{mission.hours}</span>
-      </div>
-      <div className="flex items-start gap-3 border-t border-white/5 pt-3">
-        <span className="w-16 text-white/20 font-bold shrink-0">주소</span>
-        <span className="text-white/40 leading-relaxed italic">{mission.address}</span>
+        <span className="text-white/60 leading-relaxed line-clamp-2">{mission.hours}</span>
       </div>
     </div>
 
     {/* Action Button */}
-    <button className="w-full h-11 bg-white/5 border border-white/10 rounded-2xl text-xs font-black text-white group-hover:bg-white group-hover:text-primary transition-all">
+    <button className={`w-full h-11 border rounded-2xl text-xs font-black transition-all ${isSelected ? 'bg-gold border-gold text-primary' : 'bg-white/5 border-white/10 text-white group-hover:bg-white group-hover:text-primary'}`}>
       홈페이지 바로가기
     </button>
   </motion.div>

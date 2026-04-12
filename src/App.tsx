@@ -54,7 +54,7 @@ function App() {
         </section>
         
         {/* Page 3: News & Services (Combined Centering) */}
-        <section id="news" className="snap-section bg-white overflow-hidden">
+        <section id="news" className="snap-section bg-white overflow-y-auto">
           <div className="h-full flex flex-col justify-start pt-32 gap-2">
             <NewsSection />
             <QuickService />
@@ -73,8 +73,8 @@ function App() {
           <MediaHub />
         </section>
 
-        {/* Page 7: Footer & Related Sites */}
-        <section id="footer" className="snap-section bg-white overflow-y-auto pt-[var(--header-h)]">
+        {/* Page 6: Footer & Related Sites (Combined Final Unit) */}
+        <section id="footer" className="snap-section bg-[#060E1A] overflow-y-auto pt-[var(--header-h)]">
           <RelatedSites />
           <Footer />
         </section>

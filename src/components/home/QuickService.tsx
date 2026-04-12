@@ -3,49 +3,37 @@ import { motion } from 'framer-motion';
 import { BookOpen, Plane, FileText, Globe, Users, PhoneCall, ArrowRight } from 'lucide-react';
 import { SERVICES } from '../../data/mockData';
 
-const iconConfig: Record<string, { icon: React.ReactNode; color: string; bg: string }> = {
+const iconConfig: Record<string, { icon: React.ReactNode }> = {
   passport: { 
     icon: <BookOpen size={24} />, 
-    color: 'text-blue-600', 
-    bg: 'bg-blue-50' 
   },
   travel: { 
     icon: <Plane size={24} />, 
-    color: 'text-orange-500', 
-    bg: 'bg-orange-50' 
   },
   visa: { 
     icon: <FileText size={24} />, 
-    color: 'text-emerald-500', 
-    bg: 'bg-emerald-50' 
   },
   minwon: { 
     icon: <Globe size={24} />, 
-    color: 'text-violet-500', 
-    bg: 'bg-violet-50' 
   },
   register: { 
     icon: <Users size={24} />, 
-    color: 'text-teal-500', 
-    bg: 'bg-teal-50' 
   },
   phone: { 
     icon: <PhoneCall size={24} />, 
-    color: 'text-rose-500', 
-    bg: 'bg-rose-50' 
   },
 };
 
 const QuickService: React.FC = () => {
   return (
-    <section className="bg-slate-50/50 pb-8 pt-2 px-6 md:px-12 border-t border-slate-100">
-      <div className="max-w-[1440px] shadow-2xl shadow-primary/5 mx-auto bg-white rounded-2xl p-6 md:p-8 relative overflow-hidden group/container">
+    <section className="h-[45vh] bg-slate-50/50 pb-4 pt-2 px-6 md:px-12 border-t border-slate-100 flex flex-col">
+      <div className="flex-1 max-w-[1440px] shadow-2xl shadow-primary/5 mx-auto bg-white rounded-2xl p-6 md:p-8 relative overflow-hidden group/container w-full h-full flex flex-col">
         {/* Abstract background elements */}
         <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full -mr-32 -mt-32 blur-3xl transition-transform duration-1000 group-hover/container:scale-110" />
         <div className="absolute bottom-0 left-0 w-64 h-64 bg-gold/5 rounded-full -ml-32 -mb-32 blur-3xl transition-transform duration-1000 group-hover/container:scale-110" />
 
-        <div className="relative z-10">
-          <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-6">
+        <div className="relative z-10 flex flex-col h-full">
+          <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-6 shrink-0">
             <div>
               <h3 className="text-2xl font-black text-primary tracking-tight mb-2 flex items-center gap-3">
                 자주 찾는 서비스
@@ -58,7 +46,7 @@ const QuickService: React.FC = () => {
             </a>
           </div>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
+          <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4 min-h-0 items-center">
             {SERVICES.map((svc, index) => {
               const cfg = iconConfig[svc.icon];
               return (
@@ -66,12 +54,12 @@ const QuickService: React.FC = () => {
                   key={svc.name}
                   initial={{ opacity: 0, scale: 0.9 }}
                   whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
+                  viewport={{ amount: 0.5 }}
                   transition={{ duration: 0.4, delay: index * 0.05 }}
                   whileHover={{ y: -8 }}
-                  className="group relative bg-slate-50 border border-slate-100 p-6 rounded-xl transition-all duration-300 hover:bg-white hover:shadow-xl hover:shadow-primary/5 flex flex-col items-center text-center"
+                  className="group relative bg-slate-50 border border-slate-100 p-6 rounded-xl transition-all duration-300 hover:bg-white hover:shadow-xl hover:shadow-primary/5 flex flex-col items-center text-center h-[90%]"
                 >
-                  <div className={`w-14 h-14 ${cfg.bg} ${cfg.color} rounded-2xl flex items-center justify-center mb-5 transition-all duration-500 group-hover:rotate-[10deg] group-hover:scale-110 shadow-sm`}>
+                  <div className="w-14 h-14 bg-primary/8 text-primary/80 rounded-2xl flex items-center justify-center mb-5 transition-all duration-500 group-hover:rotate-[10deg] group-hover:scale-110 shadow-sm">
                     {cfg.icon}
                   </div>
                   
@@ -79,17 +67,17 @@ const QuickService: React.FC = () => {
                     <h4 className="text-slate-800 font-bold text-base tracking-tight group-hover:text-primary transition-colors">
                       {svc.name}
                     </h4>
-                    <p className="text-[11px] text-slate-400 font-medium leading-relaxed px-2">
+                    <p className="text-[11px] text-slate-400 font-medium leading-relaxed px-2 line-clamp-2">
                       {svc.desc}
                     </p>
                   </div>
                   
-                  <div className={`absolute top-4 right-4 w-1.5 h-1.5 rounded-full ${cfg.bg.replace('bg-', 'bg-').replace('50', '500')} opacity-0 group-hover:opacity-100 transition-opacity`} />
+                  <div className="absolute top-4 right-4 w-1.5 h-1.5 rounded-full bg-primary/30 opacity-0 group-hover:opacity-100 transition-opacity" />
                   
                   <motion.div 
                     initial={{ width: 0 }}
                     whileHover={{ width: '40%' }}
-                    className={`h-1 mx-auto mt-6 rounded-full opacity-30 ${cfg.bg.replace('bg-', 'bg-').replace('50', '500')}`} 
+                    className="h-1 mx-auto mt-6 rounded-full opacity-20 bg-primary" 
                   />
                 </motion.div>
               );

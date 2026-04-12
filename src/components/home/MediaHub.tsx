@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+// 명시적으로 사용하는 아이콘만 임포트 (Youtube 등 SNS 아이콘 제외)
 import { Globe, Play, PlayCircle, Heart, MessageCircle, ExternalLink, Video, Quote } from 'lucide-react';
 
 const MediaHub: React.FC = () => {
@@ -11,7 +12,7 @@ const MediaHub: React.FC = () => {
     <section className="h-screen w-full bg-[#F8F9FA] overflow-hidden flex flex-col relative font-sans">
       <div className="flex-1 flex flex-col px-12 md:px-24 max-w-[1700px] mx-auto w-full pt-[calc(var(--header-h)+80px)] pb-10 space-y-6 md:space-y-8">
         
-        {/* Header - Compact */}
+        {/* Header */}
         <div className="flex-shrink-0">
           <div className="flex items-center gap-3 mb-1">
             <div className="w-1 h-8 bg-gold rounded-full" />
@@ -20,7 +21,7 @@ const MediaHub: React.FC = () => {
           <p className="text-[11px] font-en font-bold tracking-[0.4em] text-gold uppercase ml-4 opacity-80 leading-none">Social Media Hub</p>
         </div>
 
-        {/* Global Grid System: Fixed Height for Central Area */}
+        {/* Global Grid System */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch h-[55%] min-h-0">
           
           {/* LEFT: KOREAZ Spotlight */}
@@ -119,13 +120,13 @@ const MediaHub: React.FC = () => {
           </div>
         </div>
 
-        {/* Bottom Banner Section: Symmetrical 2-Column Grid */}
+        {/* Bottom Banner Section */}
         <div className="flex-1 grid grid-cols-2 gap-8 min-h-0 pt-2 pb-2">
-           {/* Dokdo Banner (Left) */}
+           {/* Dokdo Banner */}
            <motion.div 
              initial={{ opacity: 0, x: -20 }}
              whileInView={{ opacity: 1, x: 0 }}
-             className="w-full flex items-center justify-between bg-white rounded-2xl px-8 py-3 shadow-[0_5px_15px_rgba(0,0,0,0.02)] border border-slate-100 hover:shadow-lg transition-all group max-h-[85px]"
+             className="w-full h-full flex items-center justify-between bg-white rounded-2xl px-8 py-3 shadow-[0_5px_15px_rgba(0,0,0,0.02)] border border-slate-100 hover:shadow-lg transition-all group max-h-[100px]"
            >
              <div className="flex items-center gap-5 flex-1">
                <div className="w-10 h-10 bg-gradient-to-br from-[#0D2B55] to-blue-800 rounded-lg flex items-center justify-center text-xl shadow-md group-hover:scale-110 transition-transform">🏝️</div>
@@ -144,12 +145,12 @@ const MediaHub: React.FC = () => {
              </div>
            </motion.div>
 
-           {/* East Sea Banner (Right) */}
+           {/* East Sea Banner */}
            <motion.div 
              initial={{ opacity: 0, x: 20 }}
              whileInView={{ opacity: 1, x: 0 }}
              transition={{ delay: 0.1 }}
-             className="w-full flex items-center justify-between bg-white rounded-2xl px-8 py-3 shadow-[0_5px_15px_rgba(0,0,0,0.02)] border border-slate-100 hover:shadow-lg transition-all group max-h-[85px]"
+             className="w-full h-full flex items-center justify-between bg-white rounded-2xl px-8 py-3 shadow-[0_5px_15px_rgba(0,0,0,0.02)] border border-slate-100 hover:shadow-lg transition-all group max-h-[100px]"
            >
              <div className="flex items-center gap-5 flex-1">
                <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-primary rounded-lg flex items-center justify-center text-xl shadow-md group-hover:scale-110 transition-transform">🌊</div>
@@ -192,7 +193,7 @@ const FixedSNSCard: React.FC<FixedSNSCardProps> = ({ sns, delay, children }) => 
   >
     <div className="flex-shrink-0 flex items-center gap-2 opacity-90 mb-3">
       <div className="w-6 h-6 flex items-center justify-center bg-white/20 rounded-lg">
-         {sns.name === 'X' ? <span className="font-black text-[9px]">X</span> : <Globe size={14} />}
+         <Globe size={14} />
       </div>
       <span className="font-black text-[11px] tracking-tight">{sns.name}</span>
     </div>

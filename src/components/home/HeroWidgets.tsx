@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Plus, MessageCircle, ChevronRight, Bell } from 'lucide-react';
+import { Plus, MessageCircle, ChevronRight, Bell, Phone } from 'lucide-react';
 import { NEWS_DATA } from '../../data/mockData';
 
 const HeroWidgets: React.FC = () => {
@@ -30,8 +30,8 @@ const HeroWidgets: React.FC = () => {
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
             className="flex flex-col gap-6 w-[340px]"
           >
-            {/* News Widget - Glassmorphism */}
-            <div className="bg-black/30 backdrop-blur-xl border border-white/10 rounded-sm p-7 flex flex-col">
+            {/* News Widget - Enhanced Glassmorphism */}
+            <div className="bg-white/5 backdrop-blur-2xl border border-white/15 border-t-2 border-t-gold/30 rounded-sm p-7 flex flex-col shadow-[0_30px_60px_rgba(0,0,0,0.3)]">
               <div className="flex items-center justify-between mb-8">
                 <h3 className="text-white font-bold text-lg tracking-tight">외교부 소식</h3>
                 <button className="text-white/40 hover:text-white transition-colors">
@@ -41,11 +41,17 @@ const HeroWidgets: React.FC = () => {
               
               <div className="flex flex-col gap-6">
                 {NEWS_DATA.notice.slice(0, 3).map((item, idx) => (
-                  <div key={idx} className="group cursor-pointer">
-                    <p className="text-xs font-en font-bold text-white/40 mb-2 tracking-widest">{item.date.replace('.', ' / ')}</p>
+                  <div key={idx} className="group cursor-pointer relative pl-0 hover:pl-4 transition-all duration-300">
+                    {/* Sliding Gold Line on Hover */}
+                    <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-gold scale-y-0 group-hover:scale-y-100 transition-transform origin-top duration-300" />
+                    
+                    <p className="text-xs font-en font-bold text-white/40 mb-2 tracking-widest group-hover:text-gold/60 transition-colors">
+                      {item.date.replace('.', ' / ')}
+                    </p>
                     <h4 className="text-sm text-white/90 leading-relaxed line-clamp-2 transition-colors group-hover:text-gold">
                       {item.title}
                     </h4>
+                    
                     {idx < 2 && (
                       <div className="h-px bg-white/5 w-full mt-6" />
                     )}
@@ -54,29 +60,37 @@ const HeroWidgets: React.FC = () => {
               </div>
             </div>
 
-            {/* Yellow Banner Widget */}
-            <div className="bg-[#FFD700] p-6 rounded-sm relative overflow-hidden group cursor-pointer shadow-2xl">
+            {/* Consular Call Center Banner - Diplomatic Redesign */}
+            <div className="bg-gradient-to-br from-[#0D2B55] to-[#1a3f7a] p-6 rounded-sm relative overflow-hidden group cursor-pointer shadow-2xl border border-white/10">
               <div className="relative z-10 flex flex-col">
-                <p className="text-[10px] font-bold text-primary/60 mb-1 uppercase tracking-tighter">국민의 안전과 더 가까워집니다!</p>
-                <h3 className="text-primary font-black text-base leading-tight">
+                <div className="flex items-center gap-2 mb-2">
+                   <div className="px-2 py-0.5 bg-gold/20 border border-gold/30 rounded text-[9px] font-black text-gold uppercase tracking-widest">
+                     Safe Travel
+                   </div>
+                   <p className="text-[10px] font-bold text-white/40 uppercase tracking-tighter">Diplomatic Service</p>
+                </div>
+                
+                <h3 className="text-gold font-black text-base leading-tight">
                   영사안전콜센터<br /> 
                   카카오톡 상담 서비스
                 </h3>
                 
-                <div className="mt-4 flex items-center gap-1">
-                  {[0, 1, 3, 4].map((i) => (
-                    <div key={i} className={`w-1.5 h-1.5 rounded-full ${i === 0 ? 'bg-primary' : 'bg-primary/20'}`} />
-                  ))}
+                {/* Consular Badge */}
+                <div className="mt-6 flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-full bg-gold/10 border border-gold/20 flex items-center justify-center text-gold">
+                    <Phone size={14} />
+                  </div>
+                  <span className="text-[10px] font-black text-white/60 tracking-widest uppercase">영사안전콜센터</span>
                 </div>
               </div>
 
-              {/* Icon Emulation */}
-              <div className="absolute right-4 bottom-4 text-primary opacity-20 group-hover:opacity-100 transition-opacity duration-500">
-                <MessageCircle size={60} strokeWidth={1.5} />
+              {/* Icon Emulation - Gold Style */}
+              <div className="absolute right-4 bottom-4 text-gold opacity-10 group-hover:opacity-40 transition-all duration-700 group-hover:scale-110">
+                <MessageCircle size={64} strokeWidth={1} />
               </div>
               
-              {/* Animated Slide Effect */}
-              <div className="absolute inset-0 bg-white/20 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 skew-x-12" />
+              {/* Dynamic Light Sweep */}
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-[1.5s] ease-in-out skew-x-12" />
             </div>
           </motion.div>
         )}
